@@ -7,8 +7,8 @@ const actions = [
 
 export function Topbar({ username }: { username: string }) {
   return (
-    <header className="sticky top-0 z-10 border-b border-brand-gray/60 bg-canvas/90 px-6 py-4 backdrop-blur">
-      <div className="flex items-center gap-3">
+    <header className="sticky top-0 z-10 border-b border-brand-gray/60 bg-canvas/90 px-5 py-3 backdrop-blur">
+      <div className="flex min-w-0 items-center gap-3">
         <div className="flex flex-1 items-center gap-2 rounded-lg border border-brand-gray bg-panel px-3 py-2 text-slate-400 transition-colors focus-within:border-brand-cornflower focus-within:ring-1 focus-within:ring-brand-cornflower/30">
           <Search size={15} />
           <input
@@ -16,10 +16,10 @@ export function Topbar({ username }: { username: string }) {
             placeholder="Search metrics, months, campaigns, products..."
           />
         </div>
-        <select className="rounded-lg border border-brand-gray bg-panel px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-cornflower/40">
+        <select className="hidden rounded-lg border border-brand-gray bg-panel px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-cornflower/40 xl:block">
           <option>Fare Tessile</option>
         </select>
-        <select className="rounded-lg border border-brand-gray bg-panel px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-cornflower/40">
+        <select className="hidden rounded-lg border border-brand-gray bg-panel px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-cornflower/40 xl:block">
           <option>Last 14 months</option>
         </select>
         <button className="rounded-lg border border-brand-gray bg-panel p-2 text-slate-500 transition-colors hover:bg-slate-50 hover:text-brand-navy">

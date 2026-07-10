@@ -221,23 +221,24 @@ export function OverviewPage() {
         <Kpi label="ROAS" value={formatValue(divide(totalRevenue, totalSpend), 'decimal')} />
       </section>
 
-      <section className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-premium">
-        <div className="border-b border-slate-200 bg-slate-50 px-4 py-3">
+      <section className="min-w-0 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-premium">
+        <div className="flex items-center justify-between gap-3 border-b border-slate-200 bg-slate-50 px-4 py-3">
           <p className="text-sm font-semibold text-slate-800">Monthly Performance Matrix</p>
+          <p className="text-xs text-slate-400">Scroll horizontally inside the table</p>
         </div>
-        <div className="overflow-x-auto">
-          <table className="min-w-[1500px] w-full border-collapse text-xs">
+        <div className="max-w-full overflow-x-auto">
+          <table className="w-max min-w-full border-collapse text-[11px]">
             <thead>
               <tr className="bg-white">
-                <th className="sticky left-0 z-20 min-w-64 border-b border-r border-slate-200 bg-white px-3 py-2 text-left font-semibold text-slate-600">
+                <th className="sticky left-0 z-20 w-56 min-w-56 border-b border-r border-slate-200 bg-white px-3 py-2 text-left font-semibold text-slate-600">
                   Date
                 </th>
                 {dateHeaders.map((date) => (
-                  <th key={date} className="border-b border-r border-slate-200 px-3 py-2 text-right font-medium text-slate-400">
+                  <th key={date} className="w-24 min-w-24 border-b border-r border-slate-200 px-2 py-2 text-right font-medium text-slate-400">
                     {date}
                   </th>
                 ))}
-                <th className="border-b border-slate-200 bg-brand-navy px-3 py-2 text-right font-semibold text-white">
+                <th className="w-28 min-w-28 border-b border-slate-200 bg-brand-navy px-2 py-2 text-right font-semibold text-white">
                   Rolling Total
                 </th>
               </tr>
@@ -246,11 +247,11 @@ export function OverviewPage() {
                   Metric
                 </th>
                 {months.map((month) => (
-                  <th key={month} className="border-b border-r border-slate-200 px-3 py-2 text-right font-semibold text-slate-700">
+                  <th key={month} className="w-24 min-w-24 border-b border-r border-slate-200 px-2 py-2 text-right font-semibold text-slate-700">
                     {month}
                   </th>
                 ))}
-                <th className="border-b border-slate-200 bg-brand-navy px-3 py-2 text-right font-semibold text-white">
+                <th className="w-28 min-w-28 border-b border-slate-200 bg-brand-navy px-2 py-2 text-right font-semibold text-white">
                   Total
                 </th>
               </tr>
@@ -271,21 +272,21 @@ function SectionRows({ section }: { section: MetricSection }) {
   return (
     <>
       <tr>
-        <td colSpan={months.length + 2} className="border-y border-slate-300 bg-brand-denim px-3 py-2 text-sm font-bold text-white">
+        <td colSpan={months.length + 2} className="border-y border-slate-300 bg-brand-denim px-3 py-2 text-xs font-bold text-white">
           {section.title}
         </td>
       </tr>
       {section.rows.map((row) => (
         <tr key={`${section.title}-${row.label}`} className="hover:bg-slate-50">
-          <th className="sticky left-0 z-10 border-b border-r border-slate-200 bg-white px-3 py-2 text-left font-semibold text-slate-700">
+          <th className="sticky left-0 z-10 w-56 min-w-56 border-b border-r border-slate-200 bg-white px-3 py-2 text-left font-semibold text-slate-700">
             {row.label}
           </th>
           {row.values.map((value, index) => (
-            <td key={`${row.label}-${months[index]}`} className="border-b border-r border-slate-100 px-3 py-2 text-right tabular-nums text-slate-700">
+            <td key={`${row.label}-${months[index]}`} className="w-24 min-w-24 border-b border-r border-slate-100 px-2 py-2 text-right tabular-nums text-slate-700">
               {formatValue(value, row.format)}
             </td>
           ))}
-          <td className="border-b border-slate-200 bg-slate-50 px-3 py-2 text-right font-bold tabular-nums text-slate-950">
+          <td className="w-28 min-w-28 border-b border-slate-200 bg-slate-50 px-2 py-2 text-right font-bold tabular-nums text-slate-950">
             {formatValue(totalFor(row), row.format)}
           </td>
         </tr>

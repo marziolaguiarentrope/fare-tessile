@@ -10,10 +10,10 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="sticky top-0 flex h-screen w-72 flex-col bg-gradient-to-b from-black via-brand-navy to-brand-denim p-4">
+    <aside className="sticky top-0 flex h-screen w-60 flex-none flex-col bg-gradient-to-b from-black via-brand-navy to-brand-denim p-3">
       {/* Brand block */}
-      <div className="mb-6 rounded-xl border border-white/10 bg-white/[0.06] p-4">
-        <BrandLogo className="h-14 w-auto" fallbackClassName="text-xl" />
+      <div className="mb-5 rounded-lg border border-white/10 bg-white/[0.06] p-3">
+        <BrandLogo className="h-10 w-auto" fallbackClassName="text-lg" />
         <p className="text-[10px] text-white/40">Fare Tessile Hub</p>
       </div>
 
@@ -40,7 +40,7 @@ export function Sidebar() {
       </nav>
 
       {/* Workspace info */}
-      <div className="mt-4 rounded-xl border border-white/10 px-3 py-2.5 text-xs">
+      <div className="mt-4 rounded-lg border border-white/10 px-3 py-2.5 text-xs">
         <p className="font-medium text-white/55">Fare Tessile</p>
         <p className="text-white/30">Business workspace</p>
       </div>

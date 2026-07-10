@@ -4,11 +4,11 @@ import { Topbar } from './topbar';
 
 export function DashboardShell({ children, username }: { children: ReactNode; username: string }) {
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen overflow-x-hidden">
       <Sidebar />
-      <div className="flex-1">
+      <div className="min-w-0 flex-1">
         <Topbar username={username} />
-        <main className="space-y-6 p-6">{children}</main>
+        <main className="min-w-0 space-y-6 p-5">{children}</main>
       </div>
     </div>
   );
