@@ -2,7 +2,7 @@
 
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { db } from '@/lib/db';
+import { db, getDatabaseConfigError } from '@/lib/db';
 import { verifyPassword } from '@/lib/auth/password';
 import { createSession, destroySession } from '@/lib/auth/session';
 import { checkRateLimit } from '@/lib/auth/rate-limit';
@@ -25,6 +25,12 @@ export async function login(prevState: LoginState, formData: FormData): Promise<
 
   if (!checkRateLimit(ip)) {
     return { error: 'Too many attempts. Please wait 1 minute.' };
+  }
+
+  const configError = getDatabaseConfigError();
+  if (configError) {
+    console.error('[auth/login] database configuration missing', { error: configError });
+    return { error: 'Login is temporarily unavailable. Please contact support.' };
   }
 
   const user = await db.user.findUnique({ where: { username } });
@@ -89,10 +95,14 @@ export async function logout() {
   const cookieStore = await (await import('next/headers')).cookies();
   const sessionId = cookieStore.get('session_id')?.value;
 
-  if (sessionId) {
-    const session = await db.session.findUnique({ where: { id: sessionId }, select: { userId: true } });
-    if (session) {
-      await db.auditLog.create({ data: { actorId: session.userId, action: 'logout' } });
+  if (sessionId && !getDatabaseConfigError()) {
+    try {
+      const session = await db.session.findUnique({ where: { id: sessionId }, select: { userId: true } });
+      if (session) {
+        await db.auditLog.create({ data: { actorId: session.userId, action: 'logout' } });
+      }
+    } catch (error) {
+      console.error('[auth/logout] failed to audit logout', { error: String(error) });
     }
   }
 

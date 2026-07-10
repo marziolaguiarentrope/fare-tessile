@@ -7,6 +7,15 @@ export function middleware(request: NextRequest) {
 
   const isPublic = PUBLIC_PATHS.some((p) => pathname.startsWith(p));
   const sessionId = request.cookies.get('session_id')?.value;
+  const databaseConfigured =
+    Boolean(process.env.DATABASE_URL) &&
+    (!process.env.DATABASE_URL?.startsWith('libsql://') || Boolean(process.env.DATABASE_AUTH_TOKEN));
+
+  if (sessionId && !databaseConfigured) {
+    const response = NextResponse.redirect(new URL('/login', request.url));
+    response.cookies.delete('session_id');
+    return response;
+  }
 
   // Already authenticated: skip login page
   if (isPublic && sessionId) {
