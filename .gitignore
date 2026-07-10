@@ -1,0 +1,17 @@
+node_modules
+.next
+out
+coverage
+npm-debug.log*
+*.log
+.env*
+!.env.example
+.vercel
+
+/lib/generated/prisma
+dev.db
+dev.db-shm
+dev.db-wal
+*.tsbuildinfo
+.env*.local
+.vercel-global/
