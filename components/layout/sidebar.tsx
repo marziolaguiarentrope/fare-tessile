@@ -17,11 +17,6 @@ export function Sidebar() {
         <p className="text-[10px] text-white/40">Fare Tessile Hub</p>
       </div>
 
-      {/* Nav label */}
-      <p className="mb-2 px-1 text-[10px] font-semibold uppercase tracking-widest text-white/25">
-        Navigation
-      </p>
-
       {/* Main nav */}
       <nav className="flex-1 space-y-0.5 overflow-y-auto">
         {navigation.map((item) => {

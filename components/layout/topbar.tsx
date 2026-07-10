@@ -1,12 +1,8 @@
-import { Bell, Bot, LogOut, Plus, RefreshCcw, Search, Sparkles } from 'lucide-react';
+import { Bell, LogOut, RefreshCcw, Search } from 'lucide-react';
 import { logout } from '@/lib/auth/actions';
 
 const actions = [
-  { label: 'New Campaign',   icon: Plus,       primary: false },
-  { label: 'Generate Copy',  icon: Sparkles,   primary: false },
-  { label: 'Sync Data',      icon: RefreshCcw, primary: true  },
-  { label: 'Ask AI',         icon: Bot,        primary: false },
-  { label: 'Add Client',     icon: Plus,       primary: false },
+  { label: 'Sync Data', icon: RefreshCcw, primary: true },
 ];
 
 export function Topbar({ username }: { username: string }) {
@@ -17,14 +13,14 @@ export function Topbar({ username }: { username: string }) {
           <Search size={15} />
           <input
             className="w-full bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
-            placeholder="Global search: clients, campaigns, recommendations..."
+            placeholder="Search metrics, months, campaigns, products..."
           />
         </div>
         <select className="rounded-lg border border-brand-gray bg-panel px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-cornflower/40">
-          <option>All Clients</option>
+          <option>Fare Tessile</option>
         </select>
         <select className="rounded-lg border border-brand-gray bg-panel px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-cornflower/40">
-          <option>Last 30 days</option>
+          <option>Last 14 months</option>
         </select>
         <button className="rounded-lg border border-brand-gray bg-panel p-2 text-slate-500 transition-colors hover:bg-slate-50 hover:text-brand-navy">
           <Bell size={16} />
